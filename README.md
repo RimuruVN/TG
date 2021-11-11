@@ -1,34 +1,33 @@
 # addmember-telegram
-Use `python 3` to add member from Group A to Group B (migrate member of your group)
+Sử dụng `python 3` để thêm thành viên từ Nhóm A sang Nhóm B (di chuyển thành viên trong nhóm của bạn)
 
 
-## Require
-* Environment of python 3 (Linux, Window)
-* Need about 20 accounts to run (Avoid block account Telegram)
-* Each account need in Source Group and Target Group
-* Notice you region phone
-* Your group is Supper group
+## Yêu cầu
+* Môi trường của python 3 (Linux, Window)
+* Cần khoảng 20 tài khoản để chạy (Tránh chặn tài khoản Telegram)
+* Mỗi tài khoản cần có trong Nhóm nguồn và Nhóm mục tiêu
+* Thông báo cho bạn điện thoại khu vực
+* Nhóm của bạn là nhóm Supper
 
-https://www.wikihow.com/Convert-a-Telegram-Group-to-a-Supergroup-on-PC-or-Mac
 
 ![Supper group](images/note_tele.png)
 ![Upgraded Supper group](images/note_tele2.png)
 
-## Guide line
+## Hướng dẫn
 
-* Step 1: Install package `telethon`
+* Bước 1: Cài đặt gói `telethon`
 ```
 pip install telethon
 ```
 
-* Step 2: Create file config.json
-Copy file config.json from config.example.json
+* Bước 2: Tạo tệp config.json
+Sao chép tệp config.json từ config.example.json
 
 ```
 {
-	"group_target": 1398120166, --> id target group
-	"group_source": 1490302444, --> id source group
-	"accounts": [ --> array account
+	"group_target": 1398120166, --> nhóm mục tiêu id
+	"group_source": 1490302444, --> nhóm nguồn id
+	"accounts": [ --> tài khoản
 		{
 			"phone": "+84XXXX",
 			"api_id": 1234566,
@@ -37,14 +36,14 @@ Copy file config.json from config.example.json
 	]
 }
 ```
-`group_target` and `group_source`: after run get_data.py and check file in data/group
-`accounts`: list account Telegram; each phone, create app in https://my.telegram.org/apps and have api_id, api_hash
+`group_target` và `group_source`: sau khi chạy get_data.py và kiểm tra tệp trong data/group
+`accounts`: liệt kê tài khoản Telegram; mỗi điện thoại, tạo ứng dụng trong https://my.telegram.org/apps và có api_id, api_hash
 
-* Step 3: After have file `config.json`, run `python init_session.py`, enter phone and the code you received
+* Bước 3: Sau khi có tệp `config.json`, hãy chạy` python init_session.py`, nhập số điện thoại và mã bạn nhận được
 
 ![Init session](images/step1.png)
 
-* Step 4: run `python get_data.py` to get data of group, data user and save file in folder `data`
+* Bước 4: Chạy `python get_data.py` để lấy dữ liệu của nhóm, người dùng dữ liệu và lưu tệp vào thư mục `data`
 
 ![Get data](images/step2.png)
 ![Data after Get](images/data_step2.png)
@@ -56,10 +55,10 @@ Copy file config.json from config.example.json
     "username": "None"
 }
 ```
-One group have one list user (list username), but each account Telegram have list User (difference user_id, access_hash). Use `user_id` and `access_hash` to add member, so you need get list user of each account Telegram.
-Note: Use username have also use to add member, but something use not have username
+Một nhóm có một danh sách người dùng (danh sách tên người dùng), nhưng mỗi tài khoản Telegram có danh sách Người dùng (khác biệt user_id, access_hash). Sử dụng `user_id` và` access_hash` để thêm thành viên, vì vậy bạn cần có được danh sách người dùng của từng tài khoản Telegram.
+Lưu ý: Sử dụng tên người dùng cũng có sử dụng để thêm thành viên, nhưng một cái gì đó sử dụng không có tên người dùng
 
-After run get data, check again file in data/group and edit file config to change group_target, group_source, which you want to add.
+Sau khi chạy lấy dữ liệu, hãy kiểm tra lại tệp trong data/group và chỉnh sửa cấu hình tệp để thay đổi mục tiêu nhóm, nhóm_nguồn mà bạn muốn thêm.
 
 * Step 5: run `python add_member.py` to add member from `group_source` to `group_target`
 Logic: 
